@@ -46,19 +46,13 @@ fn update(msg: Msg, model: &mut Model, orders: &mut impl Orders<Msg>) {
 
 			// ---- observer options ----
 			let mut options = IntersectionObserverInit::new();
-			options.root(Some(&model.box_container.get().unwrap()));
-			// Fire the callback on the target visibility 10%, 20%, ... 100%
-			let thresholds = (0..=10_u8)
-				.map(|value| JsValue::from(f64::from(value) / 10.))
-				.collect::<js_sys::Array>();
-			options.threshold(&JsValue::from(thresholds));
-
+			options.threshold(&JsValue::from(1));
 			// ---- observer ----
 			let observer =
 				IntersectionObserver::new_with_options(callback.as_ref().unchecked_ref(), &options)
 					.unwrap();
 
-			observer.observe(&model.red_box.get().unwrap());
+					observer.observe(&model.red_box.get().unwrap());
 
 			// Note: Drop `observer` is not enough. We have to call `observer.disconnect()`.
 			model.observer = Some(observer);
@@ -82,8 +76,7 @@ fn view_info(observer_entries: Option<&Vec<IntersectionObserverEntry>>) -> Optio
 			St::Background => "white",
 		},
 		div![format!("Target: {:#?}", entry.target().id()),],
-		div![format!("Ratio: {:#?}", entry.intersection_ratio())],
-		div![format!("Is Intersecting: {:#?}", entry.is_intersecting())]
+		div![format!("Is intersecting entirely: {:#?}", entry.is_intersecting())]
 	])
 }
 
@@ -94,7 +87,6 @@ fn view_box_container(model: &Model) -> Node<Msg> {
 		el_ref(&model.box_container),
 		style! {
 			St::Height => vh(100),
-			St::OverflowY => "scroll",
 		},
 		view_blue_box(),
 		view_red_box(&model.red_box),
@@ -105,9 +97,9 @@ fn view_box_container(model: &Model) -> Node<Msg> {
 fn view_red_box(red_box: &ElRef<web_sys::Element>) -> Node<Msg> {
 	div![
 		el_ref(red_box),
-		id!("box-red"),
+		id!("red-box"),
 		style! {
-			St::Height => vh(100),
+			St::Height => px(800),
 			St::Background => "red",
 		}
 	]
@@ -115,7 +107,7 @@ fn view_red_box(red_box: &ElRef<web_sys::Element>) -> Node<Msg> {
 
 fn view_blue_box() -> Node<Msg> {
 	div![
-		C!["box-blue"],
+		C!["blue-box"],
 		style! {
 			St::Height => vh(100),
 			St::Background => "blue",
