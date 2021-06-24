@@ -420,7 +420,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "seed-intersection-observer"
+name = "seed_intersection_observer"
 version = "0.1.0"
 dependencies = [
  "js-sys",
