@@ -3,16 +3,6 @@
 version = 3
 
 [[package]]
-name = "aigu-seed"
-version = "0.1.0"
-dependencies = [
- "js-sys",
- "seed",
- "wasm-bindgen-test",
- "web-sys",
-]
-
-[[package]]
 name = "autocfg"
 version = "1.0.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -426,6 +416,16 @@ dependencies = [
  "version_check 0.9.3",
  "wasm-bindgen",
  "wasm-bindgen-futures",
+ "web-sys",
+]
+
+[[package]]
+name = "seed-intersection-observer"
+version = "0.1.0"
+dependencies = [
+ "js-sys",
+ "seed",
+ "wasm-bindgen-test",
  "web-sys",
 ]
 

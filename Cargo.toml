@@ -1,5 +1,5 @@
 [package]
-name = "aigu-seed"
+name = "seed-intersection-observer"
 version = "0.1.0"
 authors = ["allan2"]
 edition = "2018"

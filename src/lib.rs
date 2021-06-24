@@ -82,7 +82,8 @@ fn view_info(observer_entries: Option<&Vec<IntersectionObserverEntry>>) -> Optio
 			St::Background => "white",
 		},
 		div![format!("Target: {:#?}", entry.target().id()),],
-		div![format!("Ratio: {:#?}", entry.intersection_ratio())]
+		div![format!("Ratio: {:#?}", entry.intersection_ratio())],
+		div![format!("Is Intersecting: {:#?}", entry.is_intersecting())]
 	])
 }
 
@@ -105,7 +106,6 @@ fn view_red_box(red_box: &ElRef<web_sys::Element>) -> Node<Msg> {
 	div![
 		el_ref(red_box),
 		id!("box-red"),
-		C!["box-red"],
 		style! {
 			St::Height => vh(100),
 			St::Background => "red",
