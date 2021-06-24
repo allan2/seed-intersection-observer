@@ -99,7 +99,7 @@ fn view_red_box(red_box: &ElRef<web_sys::Element>) -> Node<Msg> {
 		el_ref(red_box),
 		id!("red-box"),
 		style! {
-			St::Height => px(800),
+			St::Height => vh(70),
 			St::Background => "red",
 		}
 	]
