@@ -11,9 +11,16 @@ crate-type = ["cdylib"]
 wasm-bindgen-test = "0.3.18"
 
 [dependencies]
-seed = "0.8.0"
-web-sys = { version = "0.3.51", features=["IntersectionObserver", "IntersectionObserverInit", "Element", "Document"] }
+seed = { git = "https://github.com/seed-rs/seed", rev = "25336b9" }
 js-sys = { version = "0.3.51" }
+
+[dependencies.web-sys]
+version = "0.3.51"
+features = [
+    "IntersectionObserver",
+    "IntersectionObserverInit",
+    "IntersectionObserverEntry",
+]
 
 [profile.release]
 lto = true
